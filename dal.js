@@ -23,4 +23,10 @@ function getAllPosts() {
 	});
 }
 
+function savePost (post) {
+	return new Promise((resolve, reject) => {
+
+	});
+}
+
 module.exports = { getAllPosts };

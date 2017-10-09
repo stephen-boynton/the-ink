@@ -13,9 +13,19 @@ export default class NewBlogForm extends Component {
 		};
 	}
 
+	_handleSubmit () {
+		const post = {
+			title: this.ref.title,
+			image: this.ref.image,
+			body: this.ref.body,
+			tags: this.ref.tags
+		};
+		this.props.submit(post);
+	}
+
 	render() {
 		return (
-			<form className="blogPost" onSubmit={this.props.submit}>
+			<form className="blogPost" onSubmit={this._}>
 				<h2>New Blog Post</h2>
 				<hr />
 				<input type="text" ref="title" placeholder="Blog Title" />

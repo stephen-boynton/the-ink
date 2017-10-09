@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllPosts } = require("../dal");
+const { getAllPosts, savePost } = require("../dal");
 
 /* GET home page. */
 router.get("/posts", async function(req, res, next) {

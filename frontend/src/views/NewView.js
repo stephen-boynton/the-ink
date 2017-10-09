@@ -10,7 +10,7 @@ export default class NewView extends Component {
 		this.state = {
 			post: {}
 		};
-	}
+	};
 	_handleSubmission = post => {
 		this.setState = {
 			post: {
