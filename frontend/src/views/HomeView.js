@@ -23,8 +23,8 @@ export default class MainView extends Component {
 				<LatestBlog />
 				<FeaturedBlog />
 				<FeaturedComments />
-				{this.state.smallBlogs.map(blog => {
-					return <SmallBlog content={blog} key={blog._id} />;
+				{this.state.smallBlogs.map((blog, ind) => {
+					return <SmallBlog content={blog} key={ind} />;
 				})}
 			</div>
 		);

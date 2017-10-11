@@ -6,13 +6,16 @@
 		"start": "nodemon app.js"
 	},
 	"dependencies": {
+		"axios": "^0.16.2",
 		"body-parser": "~1.18.2",
 		"cookie-parser": "~1.4.3",
 		"debug": "~2.6.9",
 		"ejs": "~2.5.7",
 		"express": "~4.15.5",
+		"knex": "^0.13.0",
 		"morgan": "~1.9.0",
 		"nodemon": "^1.12.1",
+		"objection": "^0.8.9",
 		"serve-favicon": "~2.4.5",
 		"sqlite3": "^3.1.13"
 	}

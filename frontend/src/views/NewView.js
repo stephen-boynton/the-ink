@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import SideNav from "../components/SideNav";
 import NewBlogForm from "../components/NewBlogForm";
 import BlogDisplay from "../components/BlogDisplay";
@@ -12,14 +13,7 @@ export default class NewView extends Component {
 		};
 	};
 	_handleSubmission = post => {
-		this.setState = {
-			post: {
-				title: post.title,
-				image: post.image,
-				body: post.body,
-				tags: post.tags
-			}
-		};
+		axios.post("/newpost", post).then(console.log)
 	};
 
 	_handlePreview = post => {

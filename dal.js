@@ -25,8 +25,17 @@ function getAllPosts() {
 
 function savePost (post) {
 	return new Promise((resolve, reject) => {
-
+		const fileSQL = `INSERT INTO Post(title, body, image, author_id)
+    VALUES ("${post.title}", "${post.body}", "${post.image}", 1)`;
+		console.log(fileSQL);
+		db.run(fileSQL, function(err) {
+			if (err) {
+				return console.error(err.message);
+			}
+			console.log(`Rows inserted ${this.changes}`);
+			resolve("file added");
+		});
 	});
 }
 
-module.exports = { getAllPosts };
+module.exports = { getAllPosts, savePost };

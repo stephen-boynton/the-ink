@@ -9,4 +9,8 @@ router.get("/posts", async function(req, res, next) {
 	res.send(posts);
 });
 
+router.post("/newpost", async (req, res, next) => {
+	const newPost = savePost(req.body);
+})
+
 module.exports = router;
