@@ -11,16 +11,16 @@ const knex = Knex({
   }
 });
 
-console.log(knex.client);
-
 Model.knex(knex);
 
 const schemaAuthor = knex.schema.createTableIfNotExists("Author", table => {
   table.increments("author_id").primary();
   table.string("name");
+  table.string("username");
   table.string("avatar");
   table.text("bio");
   table.timestamp("date_created").defaultTo(knex.fn.now());
+  table.string("pass");
 });
 
 const schemaPost = knex.schema.createTableIfNotExists("Post", table => {
@@ -128,48 +128,13 @@ class Comment extends Model {
   }
 }
 
-schemaAuthor.then(() => {
-  Author.query()
-    .insert({ name: "Stephen", avatar: "Stephen", bio: "Student" })
-    .then(person => {
-      console.log("created author " + person);
-    });
-});
-
-// movies: {
-// 	relation: Model.ManyToManyRelation,
-// 	modelClass: Movie,
-// 	join: {
-// 		from: 'Person.id',
-// 		// ManyToMany relation needs the `through` object
-// 		// to describe the join table.
-// 		through: {
-// 			// If you have a model class for the join table
-// 			// you need to specify it like this:
-// 			// modelClass: PersonMovie,
-// 			from: 'Person_Movie.personId',
-// 			to: 'Person_Movie.movieId'
-// 		},
-// 		to: 'Movie.id'
-// 	}
-// },
-
-// children: {
-// 	relation: Model.HasManyRelation,
-// 	modelClass: Person,
-// 	join: {
-// 		from: 'Person.id',
-// 		to: 'Person.parentId'
-// 	}
-// },
-
-// parent: {
-// 	relation: Model.BelongsToOneRelation,
-// 	modelClass: Person,
-// 	join: {
-// 		from: 'Person.parentId',
-// 		to: 'Person.id'
-// 	}
-// }
-
-// module.exports = { getAllPosts, savePost };
+module.exports = {
+  schemaAuthor,
+  schemaComment,
+  schemaPost,
+  schemaTag,
+  Author,
+  Comment,
+  Tag,
+  Post
+};

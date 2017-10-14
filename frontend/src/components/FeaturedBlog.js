@@ -1,9 +1,26 @@
 import React from "react";
+import "../styles/FeaturedBlog.css";
 
 export default function FeaturedBlog(props) {
-	return (
-		<div className="featured-blog col-1-4">
-			<h3>Featured Blog</h3>
-		</div>
-	);
+  return (
+    <div className="FeaturedBlog col-4-4">
+      <img src={props.image} />
+      <div className="FB-content">
+        <h2>
+          <span>FEATURED: </span>Title
+        </h2>
+        <h3>
+          <span>author: </span>Author
+        </h3>
+        <p>
+          Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla
+          sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit
+          amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh.
+          Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id
+          orci porta dapibus. Curabitur aliquet quam id dui posuere blandit.
+        </p>
+      </div>
+    </div>
+  );
 }

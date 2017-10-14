@@ -1,55 +1,47 @@
 .blogPost {
-	grid-column-start: 2;
-	grid-column-end: 5;
-	grid-row-start: 1;
-	grid-row-end: 4;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	background-color: white;
-	padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  padding: 5%;
 }
 
 .blogPost h2 {
-	margin: 0;
+  margin: 0;
 }
 
 .blogPost input,
 .blogPost textarea,
 .blogPost button {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .blogPost button {
-	width: 20%;
-	padding: 10px;
-	background-color: #3fb0ac;
-	border: none;
-	color: white;
-	margin: 5px;
+  width: 20%;
+  padding: 10px;
+  background-color: #3fb0ac;
+  border: none;
+  color: white;
+  margin: 5px;
 }
 
 .blogPost button:hover {
-	background-color: #167a77;
+  background-color: #167a77;
 }
 
 #preview-button {
-	color: #363636;
-	background-color: #dddfd4;
+  color: #363636;
+  background-color: #dddfd4;
 }
 
 #preview-button:hover {
-	background-color: #bbc395;
+  background-color: #bbc395;
 }
 
 #preview-modal {
-	grid-column-start: 2;
-	grid-column-end: 5;
-	grid-row-start: 1;
-	grid-row-end: 4;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	background-color: white;
-	padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  padding: 5%;
 }
