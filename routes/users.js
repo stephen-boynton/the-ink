@@ -6,4 +6,8 @@ router.post("/signup", register, async (req, res, next) => {
   res.send({ status: "User Created" });
 });
 
+router.post("/signin", sign_in, (req, res) => {
+  res.send();
+});
+
 module.exports = router;

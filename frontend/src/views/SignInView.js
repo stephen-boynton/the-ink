@@ -12,13 +12,18 @@ export default class SignInView extends Component {
       username: e.target[0].value,
       pass: e.target[1].value
     };
-    axios.post("/users/login").then(response => console.log(response));
+    console.log(login);
+    axios
+      .post("/users/signin", login)
+      .then(response =>
+        window.localStorage.setItem("token", response.data.token)
+      );
   };
   render() {
     return (
       <div className="SignInView">
         <MainNav />
-        <SignInForm />
+        <SignInForm submit={this._handleLogIn} />
       </div>
     );
   }

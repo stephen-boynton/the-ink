@@ -18,6 +18,18 @@ function genPass(pass) {
   });
 }
 
+function validatePass(dbPass, formPass) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(formPass, dbPass, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(true);
+      }
+    });
+  });
+}
+
 createAuthor = async author => {
   const cryptPass = await genPass(author.pass);
   Author.query()
@@ -36,5 +48,6 @@ createAuthor = async author => {
 };
 
 module.exports = {
-  createAuthor
+  createAuthor,
+  validatePass
 };

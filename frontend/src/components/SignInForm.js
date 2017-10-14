@@ -5,9 +5,9 @@ export default function SignInForm(props) {
   return (
     <div className="SignInForm col-3-4">
       <h2>Sign In to The Ink</h2>
-      <form>
+      <form onSubmit={props.submit}>
         <input autoFocus required placeholder="Username..." />
-        <input required placeholder="Password..." />
+        <input type="password" required placeholder="Password..." />
         <button type="submit">Submit</button>
       </form>
     </div>

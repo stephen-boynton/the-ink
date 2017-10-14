@@ -11,20 +11,9 @@ import "../styles/App.css";
 
 class App extends Component {
   state = {
-    posts: []
+    loggedIn: false,
+    user: {}
   };
-
-  _getPosts = () => {
-    fetch("/posts")
-      .then(res => res.json())
-      .then(posts => {
-        this.setState({ posts: posts });
-      });
-  };
-
-  componentDidMount() {
-    // this._getPosts();
-  }
 
   render() {
     return (
