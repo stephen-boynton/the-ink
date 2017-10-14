@@ -14,8 +14,8 @@ export default class MainNav extends Component {
     } else {
       return (
         <div>
-          <Link to="/">Log In</Link>
-          <Link to="/newblog">Sign Up</Link>
+          <Link to="/login">Log In</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
       );
     }

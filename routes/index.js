@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllPosts, savePost } = require("../data");
+const { createAuthor } = require("../data");
 
 /* GET home page. */
 

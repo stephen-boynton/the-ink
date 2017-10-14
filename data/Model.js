@@ -17,10 +17,10 @@ const schemaAuthor = knex.schema.createTableIfNotExists("Author", table => {
   table.increments("author_id").primary();
   table.string("name");
   table.string("username");
+  table.string("pass");
   table.string("avatar");
   table.text("bio");
   table.timestamp("date_created").defaultTo(knex.fn.now());
-  table.string("pass");
 });
 
 const schemaPost = knex.schema.createTableIfNotExists("Post", table => {
@@ -28,7 +28,7 @@ const schemaPost = knex.schema.createTableIfNotExists("Post", table => {
   table.string("title");
   table.string("image");
   table.text("body");
-  table.timestamp();
+  table.timestamp("date_created");
   table
     .integer("author_id")
     .references("author_id")
@@ -56,6 +56,11 @@ const schemaComment = knex.schema.createTableIfNotExists("Comment", table => {
     .references("author_id")
     .inTable("Author");
 });
+
+schemaAuthor.then();
+schemaPost.then();
+schemaComment.then();
+schemaTag.then();
 
 // Author model.
 class Author extends Model {

@@ -1,7 +1,8 @@
 const { createAuthor } = require("./dal_create");
-const { getAllPosts } = require("./dal_query");
+const { getAllPosts, getAuthorByUserName } = require("./dal_query");
 
 module.exports = {
   createAuthor,
-  getAllPosts
+  getAllPosts,
+  getAuthorByUserName
 };

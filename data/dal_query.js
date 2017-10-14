@@ -6,6 +6,17 @@ function getAllPosts() {
   });
 }
 
+function getAuthorByUserName(username) {
+  return new Promise((resolve, reject) => {
+    Author.query()
+      .where("username", "=", username)
+      .then(response => {
+        resolve(response);
+      });
+  });
+}
+
 module.exports = {
-  getAllPosts
+  getAllPosts,
+  getAuthorByUserName
 };

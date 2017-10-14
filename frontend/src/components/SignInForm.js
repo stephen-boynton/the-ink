@@ -1,0 +1,15 @@
+import React from "react";
+import "../styles/SignInForm.css";
+
+export default function SignInForm(props) {
+  return (
+    <div className="SignInForm col-3-4">
+      <h2>Sign In to The Ink</h2>
+      <form>
+        <input autoFocus required placeholder="Username..." />
+        <input required placeholder="Password..." />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
