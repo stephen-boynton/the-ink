@@ -7,7 +7,7 @@ export default class MainNav extends Component {
     if (this.props.isAuthenticated) {
       return (
         <div>
-          <Link to="/">Profile</Link>
+          <Link to={"/authors/" + this.props.user.username}>Profile</Link>
           <Link to="/newblog">New Post</Link>
           <a onClick={this.props.signOut}>Sign Out</a>
         </div>

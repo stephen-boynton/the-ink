@@ -1,4 +1,9 @@
-const { createAuthor, validatePass } = require("./dal_create");
+const {
+  createAuthor,
+  createPost,
+  createTags,
+  validatePass
+} = require("./dal_create");
 const {
   getAllPosts,
   getAuthorByUserName,
@@ -7,6 +12,8 @@ const {
 
 module.exports = {
   createAuthor,
+  createPost,
+  createTags,
   validatePass,
   getAllPosts,
   getAuthorByUserName,

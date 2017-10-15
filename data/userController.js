@@ -5,7 +5,9 @@ const {
   getAuthorByUserName,
   getAuthorById,
   createAuthor,
-  validatePass
+  validatePass,
+  createPost,
+  createTags
 } = require("./index");
 
 exports.register = async (req, res, next) => {
@@ -57,4 +59,26 @@ exports.reauth_token = async (req, res, next) => {
   res.json({ user: returnUser[0], token: token });
 };
 
-exports.loginRequired = function(req, res) {};
+exports.submitPostAuth = async (req, res, next) => {
+  const token = req.body.token;
+  const post = {
+    title: req.body.title,
+    image: req.body.image,
+    body: req.body.body,
+    auth_id: req.body.id
+  };
+  const postTags = req.body.tags;
+  const author = await jwt.verify(token, process.env.JWT_KEY, (err, user) => {
+    if (err) throw err;
+    return user;
+  });
+  if (author) {
+    const auth_id = await getAuthorById(author.id);
+    const post_id = await createPost(post, auth_id[0].author_id);
+    console.log(post_id.id);
+    createTags(postTags, post_id.id);
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+};

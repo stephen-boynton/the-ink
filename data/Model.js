@@ -28,7 +28,7 @@ const schemaPost = knex.schema.createTableIfNotExists("Post", table => {
   table.string("title");
   table.string("image");
   table.text("body");
-  table.timestamp("date_created");
+  table.timestamp("date_created").defaultTo(knex.fn.now());
   table
     .integer("author_id")
     .references("author_id")
@@ -55,6 +55,7 @@ const schemaComment = knex.schema.createTableIfNotExists("Comment", table => {
     .integer("author_id")
     .references("author_id")
     .inTable("Author");
+  table.timestamp("date_created").defaultTo(knex.fn.now());
 });
 
 schemaAuthor.then();

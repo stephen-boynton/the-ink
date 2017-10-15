@@ -10,8 +10,4 @@ const { createAuthor } = require("../data");
 //   res.send(posts);
 // });
 
-router.post("/newpost", async (req, res, next) => {
-  const newPost = savePost(req.body);
-});
-
 module.exports = router;

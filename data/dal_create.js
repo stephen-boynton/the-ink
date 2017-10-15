@@ -1,12 +1,6 @@
 const bcrypt = require("bcrypt");
 
-const {
-  schemaAuthor,
-  Author,
-  schemaComment,
-  schemaPost,
-  schemaTag
-} = require("./Model");
+const { Author, Post, Tag } = require("./Model");
 
 function genPass(pass) {
   return new Promise((resolve, reject) => {
@@ -47,38 +41,44 @@ createAuthor = async author => {
     });
 };
 
-createPost = async post => {
-  Post.query()
-    .insert({
-      title: post.title,
-      image: post.image,
-      body: post.body,
-      author_id: post.author_id
-    })
-    .then(post => {
-      resolve(post.post_id);
-    });
+createPost = async (post, author_id) => {
+  return new Promise((resolve, reject) => {
+    Post.query()
+      .insert({
+        title: post.title,
+        image: post.image,
+        body: post.body,
+        author_id: author_id
+      })
+      .then(post => {
+        resolve(post);
+      });
+  });
 };
 
-createTags = async (tagsString, postNo) => {
-  if (tagsString.indexOf(",") > -1) {
-    const tagsArray = tagsString.split(", ");
-    tagsArray.forEach(tag => {
+createTags = async (tagString, postNo) => {
+  return new Promise((resolve, reject) => {
+    if (tagString.indexOf(",") > -1) {
+      const tagsArray = tagString.split(", ");
+      tagsArray.forEach(tag => {
+        Tag.query()
+          .insert({
+            tag: tag,
+            post_id: postNo
+          })
+          .then(result => console.log("Added tag " + tag));
+      });
+    } else if (tagString.length === 0) {
+      return;
+    } else {
       Tag.query()
         .insert({
-          tag: tag,
+          tag: tagString,
           post_id: postNo
         })
-        .then(result => console.los("Added tag " + tag));
-    });
-  } else {
-    Tag.query()
-      .insert({
-        tag: tagString,
-        post_id: postNo
-      })
-      .then(result => console.log("Added tag " + tagString));
-  }
+        .then(result => console.log("Added tag " + tagString).then(resolv()));
+    }
+  });
 };
 
 module.exports = {

@@ -71,10 +71,12 @@ class App extends Component {
         <div className="app col-4-4">
           <MainNav
             signOut={this._signOut}
+            user={this.state.user}
             isAuthenticated={this.state.isAuthenticated}
           />
 
           <Switch>
+            <Route exact path="/authors/:username" component={ProfileView} />
             <Route
               exact
               path="/login"
