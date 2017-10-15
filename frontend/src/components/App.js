@@ -77,6 +77,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/authors/:username" component={ProfileView} />
+            <Route exact path="/blogs/:postId" component={BlogView} />
             <Route
               exact
               path="/login"

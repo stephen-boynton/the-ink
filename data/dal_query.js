@@ -34,9 +34,21 @@ function getPostsByAuthorId(id) {
   });
 }
 
+function getPostByPostId(id) {
+  return new Promise((resolve, reject) => {
+    Post.query()
+      .where("post_id", "=", id)
+      .then(response => {
+        console.log("this is response " + response);
+        resolve(response);
+      });
+  });
+}
+
 module.exports = {
   getAllPosts,
   getAuthorByUserName,
   getAuthorById,
-  getPostsByAuthorId
+  getPostsByAuthorId,
+  getPostByPostId
 };

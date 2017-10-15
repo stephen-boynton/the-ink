@@ -8,7 +8,8 @@ const {
   getAllPosts,
   getAuthorByUserName,
   getAuthorById,
-  getPostsByAuthorId
+  getPostsByAuthorId,
+  getPostByPostId
 } = require("./dal_query");
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
   getAllPosts,
   getAuthorByUserName,
   getAuthorById,
-  getPostsByAuthorId
+  getPostsByAuthorId,
+  getPostByPostId
 };

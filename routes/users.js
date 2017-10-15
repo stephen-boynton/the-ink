@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getAuthorByUserName, getPostsByAuthorId } = require("../data");
+const {
+  getAuthorByUserName,
+  getPostsByAuthorId,
+  getPostByPostId
+} = require("../data");
 const {
   register,
   sign_in,
@@ -40,6 +44,12 @@ router.get("/posts/:userId", async (req, res) => {
   console.log(req.params);
   const posts = await getPostsByAuthorId(req.params.userId);
   res.send(posts);
+});
+
+router.get("/user/:postId", async (req, res) => {
+  console.log(req.param);
+  const post = await getPostByPostId(req.params.postId);
+  res.send(post);
 });
 
 module.exports = router;
