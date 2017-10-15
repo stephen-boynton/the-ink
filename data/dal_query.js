@@ -16,7 +16,18 @@ function getAuthorByUserName(username) {
   });
 }
 
+function getAuthorById(id) {
+  return new Promise((resolve, reject) => {
+    Author.query()
+      .where("author_id", "=", id)
+      .then(response => {
+        resolve(response);
+      });
+  });
+}
+
 module.exports = {
   getAllPosts,
-  getAuthorByUserName
+  getAuthorByUserName,
+  getAuthorById
 };

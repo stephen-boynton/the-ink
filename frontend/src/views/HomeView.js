@@ -20,7 +20,6 @@ export default class MainView extends Component {
   render() {
     return (
       <div className="HomeView container">
-        <MainNav />
         <FeaturedBlog image="http://uvmbored.com/wp-content/uploads/2015/05/blog.jpg" />
         <div className="row">
           <LatestBlog />

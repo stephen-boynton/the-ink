@@ -1,5 +1,10 @@
 const jwt = require("jsonwebtoken");
-const { getAuthorByUserName, createAuthor, validatePass } = require("./index");
+const {
+  getAuthorByUserName,
+  getAuthorById,
+  createAuthor,
+  validatePass
+} = require("./index");
 
 exports.register = async (req, res, next) => {
   const isExisting = await getAuthorByUserName(req.body.username);
@@ -20,17 +25,32 @@ exports.sign_in = async (req, res, next) => {
   const isValid = await validatePass(dbUser[0].pass, credentials.pass);
   console.log(isValid);
   if (isValid === true) {
+    const userInfo = {
+      username: dbUser[0].username,
+      name: dbUser[0].name,
+      avatar: dbUser[0].avatar,
+      id: dbUser[0].author_id
+    };
     res.json({
-      token: jwt.sign(
-        {
-          username: dbUser.username,
-          name: dbUser.name,
-          avatar: dbUser.avatar,
-          id: dbUser.id
-        },
-        process.env.JWT_KEY
-      )
+      token: jwt.sign(userInfo, process.env.JWT_KEY),
+      user: userInfo
     });
   }
 };
+
+exports.reauth_token = async (req, res, next) => {
+  const token = req.body.token;
+  const reauthUser = await jwt.verify(
+    token,
+    process.env.JWT_KEY,
+    (err, user) => {
+      if (err) throw err;
+      return user;
+    }
+  );
+  const returnUser = await getAuthorById(reauthUser.id);
+  console.log(returnUser[0].username);
+  res.json({ user: returnUser[0], token: token });
+};
+
 exports.loginRequired = function(req, res) {};

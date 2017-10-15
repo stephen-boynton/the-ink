@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
+import MainNav from "./MainNav";
 import HomeView from "../views/HomeView";
 import BlogView from "../views/BlogView";
 import NewView from "../views/NewView";
@@ -11,19 +13,88 @@ import "../styles/App.css";
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    isAuthenticated: false,
     user: {}
   };
+
+  _autheticateUser = userInfo => {
+    this.setState({
+      isAuthenticated: true,
+      user: {
+        username: userInfo.username,
+        name: userInfo.name,
+        avatar: userInfo.avatar,
+        id: userInfo.id
+      }
+    });
+    console.log(this.state);
+  };
+
+  _reauthUser = () => {
+    const token = {
+      token: window.localStorage.getItem("token")
+    };
+    if (token) {
+      axios.post("/users/reauth", token).then(response => {
+        console.log(response);
+        window.localStorage.setItem("token", response.data.token);
+        const userReauth = response.data.user;
+        console.log(userReauth);
+        this.setState({
+          isAuthenticated: true,
+          user: {
+            username: userReauth.username,
+            name: userReauth.name,
+            avatar: userReauth.avatar,
+            id: userReauth.id
+          }
+        });
+      });
+    }
+  };
+
+  componentDidMount() {
+    this._reauthUser();
+  }
 
   render() {
     return (
       <BrowserRouter>
         <div className="app col-4-4">
+          <MainNav isAuthenticated={this.state.isAuthenticated} />
+
           <Switch>
-            <Route exact path="/login" component={SignInView} />
-            <Route exact path="/signup" component={SignUpView} />
-            <Route exact path="/newblog" component={NewView} />
-            <Route exact path="/" component={HomeView} />
+            <Route
+              exact
+              path="/login"
+              component={() => (
+                <SignInView
+                  authenticate={this._autheticateUser}
+                  isAuthenticated={this.state.isAuthenticated}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/signup"
+              component={() => (
+                <SignUpView isAuthenticated={this.state.isAuthenticated} />
+              )}
+            />
+            <Route
+              exact
+              path="/newblog"
+              component={() => (
+                <NewView isAuthenticated={this.state.isAuthenticated} />
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <HomeView isAuthenticated={this.state.isAuthenticated} />
+              )}
+            />
           </Switch>
         </div>
       </BrowserRouter>
@@ -33,9 +104,9 @@ class App extends Component {
 
 function mapStateToProps(state) {
   console.log(state);
-  return {
-    posts: state.posts
-  };
+  // return {
+  //   isAuthenticated: this.state.isAuthenticated
+  // };
 }
 // this.props = {
 //    //whatever mapStateToProps returns

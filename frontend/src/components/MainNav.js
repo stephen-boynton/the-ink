@@ -4,7 +4,7 @@ import "../styles/MainNav.css";
 
 export default class MainNav extends Component {
   _isLoggedIn = () => {
-    if (this.props.loggedIn) {
+    if (this.props.isAuthenticated) {
       return (
         <div>
           <Link to="/">Profile</Link>
