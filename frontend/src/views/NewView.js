@@ -13,7 +13,8 @@ export default class NewView extends Component {
     };
   }
   _handleSubmission = post => {
-    axios.post("/users/newpost", post).then(console.log);
+    console.log(post);
+    axios.post("/users/newpost", post).then(res => console.log(res));
   };
 
   _handlePreview = post => {

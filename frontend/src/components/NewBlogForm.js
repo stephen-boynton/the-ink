@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Editor from "react-medium-editor";
 import "../styles/NewBlogForm.css";
 require("medium-editor/dist/css/medium-editor.css");
 require("medium-editor/dist/css/themes/default.css");
@@ -18,30 +17,23 @@ export default class NewBlogForm extends Component {
     return window.localStorage.getItem("token");
   }
 
-  _handleBodyTyping = e => {
-    console.log(e);
-    this.setState({
-      body: e
-    });
-  };
-
   _handleSubmit = event => {
     event.preventDefault();
     event.persist();
-    console.log(this.state.body);
     const token = this._getTokeForAuth();
     if (token) {
       const post = {
         title: event.target[0].value,
         image: event.target[1].value,
-        body: this.state.body,
-        tags: event.target[2].value,
+        body: event.target[2].value,
+        tags: event.target[3].value,
         token: token
       };
       console.log(post);
       event.target[0].value = "";
       event.target[1].value = "";
       event.target[2].value = "";
+      event.target[3].value = "";
       this.props.submit(post);
       this.setState({
         submitted: true
@@ -66,7 +58,7 @@ export default class NewBlogForm extends Component {
             ref="image"
             placeholder="Main Image URL"
           />
-          <Editor required onChange={this._handleBodyTyping} />
+          <textarea rows="8" placeholder="Type your thoughts..." />
           <input type="text" ref="tags" placeholder="select, tags, here..." />
           <p>{this.state.errorMessage}</p>
           <div>

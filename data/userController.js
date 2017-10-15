@@ -21,13 +21,9 @@ exports.register = async (req, res, next) => {
   }
 };
 exports.sign_in = async (req, res, next) => {
-  console.log(req.body);
   const credentials = req.body;
-  console.log("these are cred " + credentials);
   const dbUser = await getAuthorByUserName(credentials.username);
-  console.log(dbUser);
   const isValid = await validatePass(dbUser[0].pass, credentials.pass);
-  console.log(isValid);
   if (isValid === true) {
     const userInfo = {
       username: dbUser[0].username,
@@ -55,8 +51,13 @@ exports.reauth_token = async (req, res, next) => {
     }
   );
   const returnUser = await getAuthorById(reauthUser.id);
-  console.log(returnUser[0].username);
-  res.json({ user: returnUser[0], token: token });
+  const sendUser = {
+    username: returnUser[0].username,
+    name: returnUser[0].name,
+    avatar: returnUser[0].avatar,
+    id: returnUser[0].author_id
+  };
+  res.json({ user: sendUser, token: token });
 };
 
 exports.submitPostAuth = async (req, res, next) => {

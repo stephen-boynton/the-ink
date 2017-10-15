@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAuthorByUserName } = require("../data");
+const { getAuthorByUserName, getPostsByAuthorId } = require("../data");
 const {
   register,
   sign_in,
@@ -34,6 +34,12 @@ router.get("/:username", async (req, res) => {
     id: author[0].author_id
   };
   res.send(authorDetails);
+});
+
+router.get("/posts/:userId", async (req, res) => {
+  console.log(req.params);
+  const posts = await getPostsByAuthorId(req.params.userId);
+  res.send(posts);
 });
 
 module.exports = router;

@@ -7,7 +7,8 @@ const {
 const {
   getAllPosts,
   getAuthorByUserName,
-  getAuthorById
+  getAuthorById,
+  getPostsByAuthorId
 } = require("./dal_query");
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
   validatePass,
   getAllPosts,
   getAuthorByUserName,
-  getAuthorById
+  getAuthorById,
+  getPostsByAuthorId
 };
