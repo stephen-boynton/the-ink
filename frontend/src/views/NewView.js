@@ -29,8 +29,7 @@ export default class NewView extends Component {
 
   render() {
     return (
-      <div className="container">
-        <MainNav />
+      <div className="NewView col-4-4">
         <NewBlogForm
           preview={this._handlePreview}
           submit={this._handleSubmission}

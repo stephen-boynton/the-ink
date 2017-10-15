@@ -53,6 +53,14 @@ class App extends Component {
     }
   };
 
+  _signOut = () => {
+    window.localStorage.removeItem("token");
+    this.setState({
+      isAuthenticated: false,
+      user: {}
+    });
+  };
+
   componentDidMount() {
     this._reauthUser();
   }
@@ -61,7 +69,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="app col-4-4">
-          <MainNav isAuthenticated={this.state.isAuthenticated} />
+          <MainNav
+            signOut={this._signOut}
+            isAuthenticated={this.state.isAuthenticated}
+          />
 
           <Switch>
             <Route

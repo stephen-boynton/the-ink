@@ -8,6 +8,7 @@ export default function SignInForm(props) {
       <form onSubmit={props.submit}>
         <input autoFocus required placeholder="Username..." />
         <input type="password" required placeholder="Password..." />
+        <p>{props.error}</p>
         <button type="submit">Submit</button>
       </form>
     </div>

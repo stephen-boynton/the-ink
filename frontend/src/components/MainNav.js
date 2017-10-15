@@ -9,6 +9,7 @@ export default class MainNav extends Component {
         <div>
           <Link to="/">Profile</Link>
           <Link to="/newblog">New Post</Link>
+          <a onClick={this.props.signOut}>Sign Out</a>
         </div>
       );
     } else {

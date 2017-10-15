@@ -1,0 +1,45 @@
+.NewBlogForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  padding: 5%;
+}
+
+.NewBlogForm form {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewBlogForm h2 {
+  margin: 0;
+}
+
+.NewBlogForm input,
+.NewBlogForm textarea,
+.NewBlogForm button {
+  font-size: 1.3em;
+  margin: 1em 0;
+}
+
+.NewBlogForm button {
+  width: 20%;
+  padding: 10px;
+  background-color: #3fb0ac;
+  border: none;
+  color: white;
+  margin: 5px;
+}
+
+.NewBlogForm button:hover {
+  background-color: #167a77;
+}
+
+#preview-button {
+  color: #363636;
+  background-color: #dddfd4;
+}
+
+#preview-button:hover {
+  background-color: #bbc395;
+}

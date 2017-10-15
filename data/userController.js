@@ -1,3 +1,5 @@
+//This document handles the authentication routes
+
 const jwt = require("jsonwebtoken");
 const {
   getAuthorByUserName,
@@ -35,6 +37,8 @@ exports.sign_in = async (req, res, next) => {
       token: jwt.sign(userInfo, process.env.JWT_KEY),
       user: userInfo
     });
+  } else {
+    res.send(false);
   }
 };
 

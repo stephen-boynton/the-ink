@@ -55,11 +55,6 @@ export default class SignUpView extends Component {
     }
   }
   render() {
-    return (
-      <div className="SignUpView col-4-4">
-        <MainNav />
-        {this._showForm()}
-      </div>
-    );
+    return <div className="SignUpView col-4-4">{this._showForm()}</div>;
   }
 }

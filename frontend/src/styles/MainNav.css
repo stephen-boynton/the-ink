@@ -17,4 +17,5 @@
 
 .MainNav a:hover {
   background-color: #d1d4bf;
+  cursor: pointer;
 }

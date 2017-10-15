@@ -24,7 +24,7 @@ function validatePass(dbPass, formPass) {
       if (err) {
         reject(err);
       } else {
-        resolve(true);
+        resolve(res);
       }
     });
   });
@@ -47,7 +47,43 @@ createAuthor = async author => {
     });
 };
 
+createPost = async post => {
+  Post.query()
+    .insert({
+      title: post.title,
+      image: post.image,
+      body: post.body,
+      author_id: post.author_id
+    })
+    .then(post => {
+      resolve(post.post_id);
+    });
+};
+
+createTags = async (tagsString, postNo) => {
+  if (tagsString.indexOf(",") > -1) {
+    const tagsArray = tagsString.split(", ");
+    tagsArray.forEach(tag => {
+      Tag.query()
+        .insert({
+          tag: tag,
+          post_id: postNo
+        })
+        .then(result => console.los("Added tag " + tag));
+    });
+  } else {
+    Tag.query()
+      .insert({
+        tag: tagString,
+        post_id: postNo
+      })
+      .then(result => console.log("Added tag " + tagString));
+  }
+};
+
 module.exports = {
   createAuthor,
-  validatePass
+  validatePass,
+  createPost,
+  createTags
 };
