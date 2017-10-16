@@ -39,7 +39,24 @@ function getPostByPostId(id) {
     Post.query()
       .where("post_id", "=", id)
       .then(response => {
-        console.log("this is response " + response);
+        resolve(response);
+      });
+  });
+}
+
+function getAllCommentsByPostId(id) {
+  return new Promise((resolve, reject) => {
+    console.log("comments id", id);
+    Comment.query()
+      .select(
+        "Comment.*",
+        "Author.author_id",
+        "Author.username",
+        "Author.avatar"
+      )
+      .join("Author")
+      .where("Comment.post_id", "=", id)
+      .then(response => {
         resolve(response);
       });
   });
@@ -50,5 +67,6 @@ module.exports = {
   getAuthorByUserName,
   getAuthorById,
   getPostsByAuthorId,
-  getPostByPostId
+  getPostByPostId,
+  getAllCommentsByPostId
 };

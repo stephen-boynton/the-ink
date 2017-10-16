@@ -77,7 +77,17 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/authors/:username" component={ProfileView} />
-            <Route exact path="/blogs/:postId" component={BlogView} />
+            <Route
+              exact
+              path="/blogs/:postId"
+              component={props => (
+                <BlogView
+                  {...this.props}
+                  {...props}
+                  currentUser={this.state.user}
+                />
+              )}
+            />
             <Route
               exact
               path="/login"

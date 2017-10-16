@@ -2,20 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px 20px 10px;
-  border-bottom: 1px solid black;
+  padding: 2em;
   background-color: white;
 }
 
 .MainNav a {
   text-decoration: none;
   margin: 0 10px 0 10px;
-  padding: 5px;
+  padding: 0.5em;
   font-size: 18px;
-  color: black;
+  color: #c43235;
 }
 
 .MainNav a:hover {
-  background-color: #d1d4bf;
+  border: 0.5px solid #c43235;
   cursor: pointer;
+}
+
+.MainNav #logo {
+  padding: 0;
+}
+
+.MainNav #logo:hover {
+  background-color: white;
 }

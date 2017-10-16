@@ -62,14 +62,16 @@ export default class NewBlogForm extends Component {
           <input type="text" ref="tags" placeholder="select, tags, here..." />
           <p>{this.state.errorMessage}</p>
           <div>
-            <button type="submit">Submit</button>
-            <button
+            <button className="btn" type="submit">
+              Submit
+            </button>
+            {/* <button
               id="preview-button"
               onClick={this.props.preview}
               type="button"
             >
               Preview
-            </button>
+            </button> */}
           </div>
         </form>
       </div>

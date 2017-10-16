@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 
-const { Author, Post, Tag } = require("./Model");
+const { Author, Post, Tag, Comment } = require("./Model");
 
 function genPass(pass) {
   return new Promise((resolve, reject) => {
@@ -56,6 +56,21 @@ createPost = async (post, author_id) => {
   });
 };
 
+createComment = async commentObject => {
+  return new Promise((resolve, reject) => {
+    Comment.query()
+      .insert({
+        title: commentObject.title,
+        comment: commentObject.comment,
+        author_id: commentObject.author_id,
+        post_id: commentObject.post_id
+      })
+      .then(comment => {
+        resolve(comment);
+      });
+  });
+};
+
 createTags = async (tagString, postNo) => {
   return new Promise((resolve, reject) => {
     if (tagString.indexOf(",") > -1) {
@@ -85,5 +100,6 @@ module.exports = {
   createAuthor,
   validatePass,
   createPost,
-  createTags
+  createTags,
+  createComment
 };

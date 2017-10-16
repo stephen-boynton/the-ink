@@ -3,13 +3,15 @@ const router = express.Router();
 const {
   getAuthorByUserName,
   getPostsByAuthorId,
-  getPostByPostId
+  getPostByPostId,
+  getAllCommentsByPostId
 } = require("../data");
 const {
   register,
   sign_in,
   submitPostAuth,
-  reauth_token
+  reauth_token,
+  submitComment
 } = require("../data/userController");
 
 router.post("/signup", register, async (req, res, next) => {
@@ -41,15 +43,22 @@ router.get("/:username", async (req, res) => {
 });
 
 router.get("/posts/:userId", async (req, res) => {
-  console.log(req.params);
   const posts = await getPostsByAuthorId(req.params.userId);
   res.send(posts);
 });
 
 router.get("/user/:postId", async (req, res) => {
-  console.log(req.param);
   const post = await getPostByPostId(req.params.postId);
-  res.send(post);
+  const comments = await getAllCommentsByPostId(req.params.postId);
+  const postObjects = {
+    post: post[0],
+    comments: comments
+  };
+  res.send(postObjects);
+});
+
+router.post("/blogs/comment", submitComment, async (req, res) => {
+  res.send();
 });
 
 module.exports = router;

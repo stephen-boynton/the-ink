@@ -46,6 +46,7 @@ const schemaTag = knex.schema.createTableIfNotExists("Tag", table => {
 
 const schemaComment = knex.schema.createTableIfNotExists("Comment", table => {
   table.increments("comment_id").primary();
+  table.text("title");
   table.text("comment");
   table
     .integer("post_id")
@@ -77,11 +78,19 @@ class Post extends Model {
   static get relationMappings() {
     return {
       postAuthor: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Author,
         join: {
           from: "Post.author_id",
           to: "Author.author_id"
+        }
+      },
+      postComments: {
+        relation: Model.HasManyRelation,
+        modelClass: Comment,
+        join: {
+          from: "Post.post_id",
+          to: "Comment.post_id"
         }
       }
     };
@@ -95,7 +104,7 @@ class Tag extends Model {
   static get relationMappings() {
     return {
       tagPost: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Post,
         join: {
           from: "Tag.post_id",
@@ -114,7 +123,7 @@ class Comment extends Model {
   static get relationMappings() {
     return {
       commentAuthor: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Author,
         join: {
           from: "Comment.author_id",
@@ -123,7 +132,7 @@ class Comment extends Model {
       },
 
       commentPost: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Post,
         join: {
           from: "Comment.post_id",

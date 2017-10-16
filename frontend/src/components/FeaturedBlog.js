@@ -6,9 +6,9 @@ export default function FeaturedBlog(props) {
     <div className="FeaturedBlog col-4-4">
       <img src={props.image} />
       <div className="FB-content">
-        <h2>
+        <h3>
           <span>FEATURED: </span>Title
-        </h2>
+        </h3>
         <h3>
           <span>author: </span>Author
         </h3>

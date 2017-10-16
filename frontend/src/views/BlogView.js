@@ -9,24 +9,30 @@ export default class BlogView extends Component {
     post: {},
     comments: []
   };
-  _retrievePost() {
+  _retrievePostandComments = async () => {
     const { postId } = this.props.match.params;
-    axios.get("/users/user/" + postId).then(post => {
-      this.setState({
-        post: post.data[0]
-      });
+    const thisPost = await axios.get("/users/user/" + postId).then(post => {
+      console.log(post.data);
+      return post.data;
     });
-  }
+    this.setState({
+      post: thisPost.post,
+      comments: thisPost.comments
+    });
+    console.log(this.state);
+  };
   componentDidMount() {
-    this._retrievePost();
+    this._retrievePostandComments();
   }
   render() {
     return (
       <div className="BlogView">
-        <BlogContent post={this.state.post} />
-        {this.state.comments.map(comment => {
-          return <BlogComment comment={comment} />;
-        })}
+        <BlogContent
+          {...this.props}
+          currentUser={this.props.currentUser}
+          post={this.state.post}
+          comments={this.state.comments}
+        />
       </div>
     );
   }

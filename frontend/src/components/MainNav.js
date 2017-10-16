@@ -24,7 +24,9 @@ export default class MainNav extends Component {
   render() {
     return (
       <div className="MainNav col-4-4">
-        <h1>THE INK</h1>
+        <Link id="logo" to="/">
+          <h1>THE INK</h1>
+        </Link>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/">Archive</Link>

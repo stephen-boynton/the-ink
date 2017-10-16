@@ -7,7 +7,8 @@ const {
   createAuthor,
   validatePass,
   createPost,
-  createTags
+  createTags,
+  createComment
 } = require("./index");
 
 exports.register = async (req, res, next) => {
@@ -78,6 +79,32 @@ exports.submitPostAuth = async (req, res, next) => {
     const post_id = await createPost(post, auth_id[0].author_id);
     console.log(post_id.id);
     createTags(postTags, post_id.id);
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+};
+
+exports.submitComment = async (req, res, next) => {
+  const token = req.body.token;
+
+  const commentAuthor = await jwt.verify(
+    token,
+    process.env.JWT_KEY,
+    (err, user) => {
+      if (err) throw err;
+      return user;
+    }
+  );
+  if (commentAuthor) {
+    const comment = {
+      title: req.body.title,
+      comment: req.body.comment,
+      post_id: req.body.post_id,
+      author_id: commentAuthor.id
+    };
+    console.log(comment);
+    createComment(comment);
     res.send(true);
   } else {
     res.send(false);

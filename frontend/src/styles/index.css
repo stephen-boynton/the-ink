@@ -1,8 +1,8 @@
-/*
-#dddfd4
-#fae596
-#3fb0ac
-#173e43
+/* 
+#300032 - puple
+#06000a - black
+#c43235 - red
+#e6e6e8 - gray
 */
 
 * {
@@ -14,7 +14,44 @@
 body {
   padding: 10px;
   width: 100%;
-  background-color: #dddfd4;
+  background-color: #e6e6e8;
+}
+
+h1 {
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  color: #1d2120;
+}
+
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: lighter;
+  color: #c43235;
+}
+
+h3 {
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+}
+
+a {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: lighter;
+  color: #c43235;
+}
+
+.btn {
+  padding: 0.5em;
+  background-color: #300032;
+  border: none;
+  color: white;
+  margin: 0.5em;
+  font-size: 1.1em;
+  width: 25%;
 }
 
 /* .container {
