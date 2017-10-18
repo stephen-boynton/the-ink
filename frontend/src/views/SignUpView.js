@@ -27,7 +27,6 @@ export default class SignUpView extends Component {
         });
         return;
       } else {
-        console.log(response);
         e.target[0].value = "";
         e.target[1].value = "";
         e.target[2].value = "";

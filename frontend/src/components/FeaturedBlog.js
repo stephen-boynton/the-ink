@@ -1,24 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/FeaturedBlog.css";
 
 export default function FeaturedBlog(props) {
   return (
     <div className="FeaturedBlog col-4-4">
-      <img src={props.image} />
+      <img src={props.post.image} />
       <div className="FB-content">
         <h3>
-          <span>FEATURED: </span>Title
+          <span>FEATURED: </span>
+          <Link to={"/blogs/" + props.post.post_id}>{props.post.title}</Link>
         </h3>
         <h3>
-          <span>author: </span>Author
+          <span>author: </span>
+          <Link to={"/authors/" + props.post.username}>{props.post.name}</Link>
         </h3>
         <p>
-          Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla
-          sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit
-          amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh.
-          Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id
-          orci porta dapibus. Curabitur aliquet quam id dui posuere blandit.
+          {props.truncate(props.post.body)}
+          <Link id="readMore" to={"/blogs/" + props.post.post_id}>
+            Read more...
+          </Link>
         </p>
       </div>
     </div>

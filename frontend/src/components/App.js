@@ -27,7 +27,6 @@ class App extends Component {
         id: userInfo.id
       }
     });
-    console.log(this.state);
   };
 
   _reauthUser = () => {
@@ -36,10 +35,9 @@ class App extends Component {
     };
     if (token) {
       axios.post("/users/reauth", token).then(response => {
-        console.log(response);
+        response;
         window.localStorage.setItem("token", response.data.token);
         const userReauth = response.data.user;
-        console.log(userReauth);
         this.setState({
           isAuthenticated: true,
           user: {
@@ -127,7 +125,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  state;
   // return {
   //   isAuthenticated: this.state.isAuthenticated
   // };

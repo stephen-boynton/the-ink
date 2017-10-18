@@ -53,7 +53,6 @@ export default class BlogContent extends Component {
       token: token
     };
     axios.post("/users/blogs/comment", comment).then(response => {
-      console.log(response);
       if (response.data) {
         e.target[0].value = "";
         e.target[1].value = "";

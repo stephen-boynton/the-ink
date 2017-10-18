@@ -25,4 +25,5 @@
 
 .MainNav #logo:hover {
   background-color: white;
+  border: none;
 }

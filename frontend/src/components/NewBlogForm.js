@@ -29,7 +29,6 @@ export default class NewBlogForm extends Component {
         tags: event.target[3].value,
         token: token
       };
-      console.log(post);
       event.target[0].value = "";
       event.target[1].value = "";
       event.target[2].value = "";

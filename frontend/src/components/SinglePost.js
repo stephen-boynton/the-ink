@@ -6,7 +6,6 @@ export default class SinglePost extends Component {
   _truncateText() {
     const blogPost = this.props.post.body;
     const truncatedPost = blogPost.substring(0, 150);
-    console.log(truncatedPost);
     return truncatedPost + "...";
   }
   render() {

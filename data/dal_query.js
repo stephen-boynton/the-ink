@@ -1,9 +1,7 @@
 const { Author, Comment, Tag, Post } = require("./Model");
 
 function getAllPosts() {
-  Post.query().then(posts => {
-    console.log(posts);
-  });
+  Post.query().then(posts);
 }
 
 function getAuthorByUserName(username) {
@@ -44,9 +42,8 @@ function getPostByPostId(id) {
   });
 }
 
-function getAllCommentsByPostId(id) {
+function getAllCommentsByPostId(postId) {
   return new Promise((resolve, reject) => {
-    console.log("comments id", id);
     Comment.query()
       .select(
         "Comment.*",
@@ -54,12 +51,71 @@ function getAllCommentsByPostId(id) {
         "Author.username",
         "Author.avatar"
       )
-      .join("Author")
-      .where("Comment.post_id", "=", id)
+      .join("Author", "Author.author_id", "Comment.author_id")
+      .where("Comment.post_id", "=", postId)
       .then(response => {
         resolve(response);
       });
   });
+}
+
+function getFeaturedArticle() {
+  return new Promise((resolve, reject) => {
+    Post.query()
+      .select("Post.*", "Author.name", "Author.username")
+      .where("featured", "=", 1)
+      .join("Author", "Author.author_id", "Post.author_id")
+      .then(featured => {
+        resolve(featured);
+      });
+  });
+}
+
+function getFeaturedComments() {
+  return new Promise((resolve, reject) => {
+    Comment.query()
+      .select("Comment.*", "Author.username", "Author.avatar")
+      .where("featured", "=", "1")
+      .join("Author", "Author.author_id", "Comment.author_id")
+      .then(featured => {
+        resolve(featured);
+      });
+  });
+}
+function getLastArticle() {
+  return new Promise((resolve, reject) => {
+    Post.query()
+      .orderBy("post_id", "desc")
+      .limit(1)
+      .then(latest => {
+        resolve(latest);
+      });
+  });
+}
+
+function getLatestArticles() {
+  return new Promise((resolve, reject) => {
+    Post.query()
+      .orderBy("post_id", "desc")
+      .limit(9)
+      .then(latest => {
+        latest.shift();
+        resolve(latest);
+      });
+  });
+}
+
+async function getFrontPageContent() {
+  const recent = await getLatestArticles();
+  const last = await getLatestArticles();
+  const featuredCom = await getFeaturedComments();
+  const featuredArt = await getFeaturedArticle();
+  return {
+    last,
+    recent,
+    featuredCom,
+    featuredArt
+  };
 }
 
 module.exports = {
@@ -68,5 +124,6 @@ module.exports = {
   getAuthorById,
   getPostsByAuthorId,
   getPostByPostId,
-  getAllCommentsByPostId
+  getAllCommentsByPostId,
+  getFrontPageContent
 };

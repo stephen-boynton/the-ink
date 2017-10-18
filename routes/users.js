@@ -4,7 +4,8 @@ const {
   getAuthorByUserName,
   getPostsByAuthorId,
   getPostByPostId,
-  getAllCommentsByPostId
+  getAllCommentsByPostId,
+  getFrontPageContent
 } = require("../data");
 const {
   register,

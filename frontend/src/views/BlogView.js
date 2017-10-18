@@ -12,14 +12,12 @@ export default class BlogView extends Component {
   _retrievePostandComments = async () => {
     const { postId } = this.props.match.params;
     const thisPost = await axios.get("/users/user/" + postId).then(post => {
-      console.log(post.data);
       return post.data;
     });
     this.setState({
       post: thisPost.post,
       comments: thisPost.comments
     });
-    console.log(this.state);
   };
   componentDidMount() {
     this._retrievePostandComments();

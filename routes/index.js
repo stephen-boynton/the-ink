@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { createAuthor } = require("../data");
+const { createAuthor, getFrontPageContent } = require("../data");
 
 /* GET home page. */
 
-// router.get("/posts", async function(req, res, next) {
-//   const posts = await getAllPosts();
-//   console.log(posts);
-//   res.send(posts);
-// });
+router.get("/homeview", async (req, res) => {
+  const content = await getFrontPageContent();
+  res.send(content);
+});
 
 module.exports = router;

@@ -15,7 +15,6 @@ exports.register = async (req, res, next) => {
   const isExisting = await getAuthorByUserName(req.body.username);
   if (!isExisting.length) {
     await createAuthor(req.body);
-    console.log(req.body);
     next();
   } else {
     res.send(false);
@@ -77,7 +76,6 @@ exports.submitPostAuth = async (req, res, next) => {
   if (author) {
     const auth_id = await getAuthorById(author.id);
     const post_id = await createPost(post, auth_id[0].author_id);
-    console.log(post_id.id);
     createTags(postTags, post_id.id);
     res.send(true);
   } else {
@@ -103,7 +101,6 @@ exports.submitComment = async (req, res, next) => {
       post_id: req.body.post_id,
       author_id: commentAuthor.id
     };
-    console.log(comment);
     createComment(comment);
     res.send(true);
   } else {

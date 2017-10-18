@@ -25,7 +25,6 @@ export default class SignInView extends Component {
         });
         window.localStorage.setItem("token", response.data.token);
         this.props.authenticate(response.data.user);
-        console.log(this.state);
       } else if (response.data === false) {
         this.setState({
           errorMessage: "Invalid username or password"
@@ -36,10 +35,8 @@ export default class SignInView extends Component {
 
   _successLogin = () => {
     if (this.state.success) {
-      console.log("True");
       return <h1 className="SignUpForm">You have been logged in.</h1>;
     } else if (!this.state.success) {
-      console.log("False");
       return (
         <SignInForm
           error={this.state.errorMessage}

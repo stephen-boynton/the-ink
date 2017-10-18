@@ -36,9 +36,7 @@ createAuthor = async author => {
         "https://pixabay.com/get/e032b20b2ef41c22d2524518a33219c8b66ae3d019b9114192f1c87d/blank-profile-picture-973460_1280.png",
       bio: author.bio
     })
-    .then(author => {
-      console.log("Success");
-    });
+    .then(author);
 };
 
 createPost = async (post, author_id) => {
@@ -81,7 +79,7 @@ createTags = async (tagString, postNo) => {
             tag: tag,
             post_id: postNo
           })
-          .then(result => console.log("Added tag " + tag));
+          .then(result);
       });
     } else if (tagString.length === 0) {
       return;
@@ -91,7 +89,7 @@ createTags = async (tagString, postNo) => {
           tag: tagString,
           post_id: postNo
         })
-        .then(result => console.log("Added tag " + tagString).then(resolv()));
+        .then(resolv());
     }
   });
 };

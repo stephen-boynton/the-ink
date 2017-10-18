@@ -11,7 +11,8 @@ const {
   getAuthorById,
   getPostsByAuthorId,
   getPostByPostId,
-  getAllCommentsByPostId
+  getAllCommentsByPostId,
+  getFrontPageContent
 } = require("./dal_query");
 
 module.exports = {
@@ -25,5 +26,6 @@ module.exports = {
   getAuthorById,
   getPostsByAuthorId,
   getPostByPostId,
-  getAllCommentsByPostId
+  getAllCommentsByPostId,
+  getFrontPageContent
 };

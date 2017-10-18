@@ -9,6 +9,15 @@
   height: 10em;
 }
 
+.FeaturedBlog a {
+  text-decoration: none;
+  color: #06000a;
+}
+
+.FeaturedBlog a:hover {
+  color: #c43235;
+}
+
 .FB-content {
   margin-left: 0.5em;
   display: flex;
@@ -23,4 +32,9 @@
 
 .FB-content p {
   line-height: 1.6em;
+}
+
+.FeaturedBlog #readMore {
+  text-decoration: underline;
+  color: #c43235;
 }
