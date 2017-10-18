@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import BlogContent from "../components/BlogContent";
-import BlogComment from "../components/BlogComment";
 import "../styles/BlogView.css";
 
 export default class BlogView extends Component {

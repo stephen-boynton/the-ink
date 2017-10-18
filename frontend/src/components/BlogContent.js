@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import BlogComment from "./BlogComment";
 import ExistingComment from "./ExistingComment";

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SignInForm from "../components/SignInForm";
-import MainNav from "../components/MainNav";
 import "../styles/SignInView.css";
 
 export default class SignInView extends Component {

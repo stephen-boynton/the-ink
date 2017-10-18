@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import MainNav from "../components/MainNav";
 import NewBlogForm from "../components/NewBlogForm";
 import BlogDisplay from "../components/BlogDisplay";
 import "../styles/NewView.css";

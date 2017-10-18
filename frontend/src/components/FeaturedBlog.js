@@ -5,7 +5,7 @@ import "../styles/FeaturedBlog.css";
 export default function FeaturedBlog(props) {
   return (
     <div className="FeaturedBlog col-4-4">
-      <img src={props.post.image} />
+      <img src={props.post.image} alt="blog" />
       <div className="FB-content">
         <h3>
           <span>FEATURED: </span>
