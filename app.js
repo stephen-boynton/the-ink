@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV === "dev") {
+  require("dotenv").config();
+}
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -44,7 +46,7 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-app.set("port", 4000);
+app.set("port", process.env.PORT || 4000);
 
 app.listen(app.get("port"), () => {
   console.log("Your app has started, sir.");
