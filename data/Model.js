@@ -8,7 +8,7 @@ const Knex = require("knex");
 const knex = Knex({
   client: "pg",
   connection: {
-    host: "http://localhost:5432",
+    host: "http://localhost",
     user: user,
     password: password,
     database: "blog"
