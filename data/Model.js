@@ -1,4 +1,4 @@
-const sqlite3 = require("sqlite3");
+const pg = require("pg");
 const Promise = require("bluebird");
 const objection = require("objection");
 const { user, password } = require("./config");
