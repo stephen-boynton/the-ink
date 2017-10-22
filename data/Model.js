@@ -1,13 +1,17 @@
 const sqlite3 = require("sqlite3");
 const Promise = require("bluebird");
 const objection = require("objection");
+const { user, password } = require("./config");
 const Model = objection.Model;
 const Knex = require("knex");
 
 const knex = Knex({
-  client: "sqlite3",
+  client: "pg",
   connection: {
-    filename: __dirname + "/db/blog.db"
+    host: "http://192.168.0.108:5432",
+    user: user,
+    password: password,
+    database: "blog"
   }
 });
 
