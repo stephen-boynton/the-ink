@@ -21,12 +21,12 @@ export default class ProfileView extends Component {
   _getUserandPosts = async () => {
     const { username } = this.props.match.params;
     const thisProfile = await axios
-      .get("http://the-ink.crabdance.com/users/" + username)
+      .get("https://the-ink.crabdance.com/users/" + username)
       .then(user => {
         return user.data;
       });
     const thesePosts = await axios
-      .get("http://the-ink.crabdance.com/users/posts/" + thisProfile.id)
+      .get("https://the-ink.crabdance.com/users/posts/" + thisProfile.id)
       .then(posts => {
         return posts.data;
       });

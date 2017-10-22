@@ -52,7 +52,7 @@ export default class BlogContent extends Component {
       token: token
     };
     axios
-      .post("http://the-ink.crabdance.com/users/blogs/comment", comment)
+      .post("https://the-ink.crabdance.com/users/blogs/comment", comment)
       .then(response => {
         if (response.data) {
           e.target[0].value = "";
