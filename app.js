@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 80);
 
 app.listen(app.get("port"), () => {
   console.log("Your app has started, sir.");
