@@ -10,9 +10,11 @@ export default class BlogView extends Component {
   };
   _retrievePostandComments = async () => {
     const { postId } = this.props.match.params;
-    const thisPost = await axios.get("/users/user/" + postId).then(post => {
-      return post.data;
-    });
+    const thisPost = await axios
+      .get("http://the-ink.crabdance.com/users/user/" + postId)
+      .then(post => {
+        return post.data;
+      });
     this.setState({
       post: thisPost.post,
       comments: thisPost.comments

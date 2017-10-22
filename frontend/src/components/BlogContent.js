@@ -51,16 +51,18 @@ export default class BlogContent extends Component {
       post_id: postId,
       token: token
     };
-    axios.post("/users/blogs/comment", comment).then(response => {
-      if (response.data) {
-        e.target[0].value = "";
-        e.target[1].value = "";
-      } else {
-        this.setState({
-          errorMessage: "Something went wrong. Please try again later"
-        });
-      }
-    });
+    axios
+      .post("http://the-ink.crabdance.com/users/blogs/comment", comment)
+      .then(response => {
+        if (response.data) {
+          e.target[0].value = "";
+          e.target[1].value = "";
+        } else {
+          this.setState({
+            errorMessage: "Something went wrong. Please try again later"
+          });
+        }
+      });
   };
 
   render() {

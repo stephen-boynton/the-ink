@@ -16,20 +16,22 @@ export default class SignInView extends Component {
       username: e.target[0].value,
       pass: e.target[1].value
     };
-    axios.post("/users/signin", login).then(response => {
-      if (response.data) {
-        this.setState({
-          errorMessage: "",
-          success: true
-        });
-        window.localStorage.setItem("token", response.data.token);
-        this.props.authenticate(response.data.user);
-      } else if (response.data === false) {
-        this.setState({
-          errorMessage: "Invalid username or password"
-        });
-      }
-    });
+    axios
+      .post("http://the-ink.crabdance.com/users/signin", login)
+      .then(response => {
+        if (response.data) {
+          this.setState({
+            errorMessage: "",
+            success: true
+          });
+          window.localStorage.setItem("token", response.data.token);
+          this.props.authenticate(response.data.user);
+        } else if (response.data === false) {
+          this.setState({
+            errorMessage: "Invalid username or password"
+          });
+        }
+      });
   };
 
   _successLogin = () => {

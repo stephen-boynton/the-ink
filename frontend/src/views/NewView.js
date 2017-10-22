@@ -12,7 +12,9 @@ export default class NewView extends Component {
     };
   }
   _handleSubmission = post => {
-    axios.post("/users/newpost", post).then(res => res);
+    axios
+      .post("http://the-ink.crabdance.com/users/newpost", post)
+      .then(res => res);
   };
 
   _handlePreview = post => {
